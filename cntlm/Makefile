@@ -9,28 +9,27 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=cntlm
 PKG_VERSION:=0.92.3
-PKG_RELEASE:=1.0
+PKG_RELEASE:=1
+
+PKG_MAINTAINER:=Jakub Skopal <j@kubs.cz>
+
+PKG_LICENSE:=GPLv2
+PKG_LICENSE_FILES:=LICENSE
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_URL:=http://tenet.dl.sourceforge.net/project/cntlm/cntlm/cntlm%200.92.3/
 PKG_MD5SUM:=48b101fe4d354ff99276d19ab94563d4
 
-PKG_LICENSE:=GPL-2.0
-PKG_LICENSE_FILES:=LICENSE
-
 PKG_FIXUP:=autoreconf
 PKG_BUILD_PARALLEL:=1
-
-PKG_CONFIG_DEPENDS:=
 
 include $(INCLUDE_DIR)/package.mk
 
 define Package/cntlm
-  TITLE:=Cntlm
+  TITLE:=cntlm
   SECTION:=net
   CATEGORY:=Network
   URL:=http://cntlm.sourceforge.net/
-  MAINTAINER:=Jakub Skopal <j@kubs.cz>
   DEPENDS+= +libpthread
 endef
 
@@ -40,9 +39,11 @@ define Package/cntlm/description
   very fast and resource-efficient. Go to http://cntlm.sf.net/ 
 endef
 
-TARGET_CFLAGS += $(FPIC)
+define Package/cntlm/conffiles
+/etc/cntlm.conf
+endef
 
-# CONFIGURE_ARGS += 
+TARGET_CFLAGS += $(FPIC)
 
 define Build/Compile
 	+$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR) \
