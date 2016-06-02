@@ -34,9 +34,7 @@ define Package/cntlm
 endef
 
 define Package/cntlm/description
-	Cntlm is an NTLM / NTLMv2 authenticating HTTP/1.1 proxy. It caches auth'd connections for reuse,
-	offers TCP/IP tunneling (port forwarding) thru parent proxy and much much more. It's in C,
-	very fast and resource-efficient. Go to http://cntlm.sf.net/ 
+	Cntlm is an NTLM / NTLMv2 authenticating HTTP/1.1 proxy.
 endef
 
 define Package/cntlm/conffiles
