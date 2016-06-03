@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=cntlm
 PKG_VERSION:=0.92.3
-PKG_RELEASE:=2
+PKG_RELEASE:=3
 
 PKG_MAINTAINER:=Jakub Skopal <j@kubs.cz>
 
