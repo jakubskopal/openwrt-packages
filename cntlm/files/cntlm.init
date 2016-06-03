@@ -51,7 +51,6 @@ start_instance() {
 
 	procd_set_param command /usr/sbin/cntlm
 	procd_append_param command "-f"
-	procd_append_param command "-c /dev/null"
     procd_append_param command "-u nobody"
 
     append_arg "$cfg" auth "-a"
