@@ -21,8 +21,8 @@ respawn.rmempty = false
 
 -- Upstream and most commonly used options
 
-proxy=s:option(DynamicList, "proxy", translate("Upstream Proxies (ip:port)"))
-proxy.cast = nil
+proxy=s:option(DynamicList, "proxy", translate("Upstream Proxies"), translate("e.g. 10.20.30.40:3128 or 192.168.34.23:8080"))
+proxy.cast = "table"
 proxy.default = "10.23.43.129:3128"
 proxy.rmempty = false
 
@@ -36,7 +36,7 @@ password=s:option(Value, "password", translate("Upstream Proxy Password"))
 password.rmempty = false
 password.password = true
 
-noproxy=s:option(Value, "noproxy", translate("No proxy for"))
+noproxy=s:option(Value, "noproxy", translate("No proxy for"), translate("Comma delimited list, e.g. 127.0.0.*, 10.*, 192.168.*"))
 noproxy.default = "localhost, 127.0.0.*, 10.*, 192.168.*"
 noproxy.rmempty = false
 
@@ -49,15 +49,27 @@ listen_port.default = "3128"
 listen_port.rmempty = false
 listen_port.datatype = "port"
 
-socks5_port=s:option(Value, "socks5_port", translate("Socks5 port"))
-socks5_port.rmempty = true
-socks5_port.datatype = "port"
-
 workstation=s:option(Value, "workstation", translate("Workstation name"))
 workstation.default = "netbios1"
 workstation.rmempty = false
 
 -- Other useful options
+
+socks5_port=s:option(Value, "socks5_port", translate("Socks5 port"), translate("Leave empty to disable SOCKS5 proxy, the most common is 1080"))
+socks5_port.rmempty = true
+socks5_port.datatype = "port"
+
+socks5_users=s:option(DynamicList, "socks5_users", translate("Socks5 users"), translate("Enter username and password delimited by colon, e.g. bob:secret"))
+socks5_users.cast = "table"
+socks5_users.rmempty = true
+
+tunnels=s:option(DynamicList, "tunnels", translate("Tunnels"), translate("Syntax is the same as OpenSSH local forwarding, i.e. [<i>src_ip</i>]:<i>src_port</i>:<i>dest_ip</i>:<i>dest_port</i>"))
+tunnels.cast = "table"
+tunnels.rmempty = true
+
+headers=s:option(DynamicList, "headers", translate("Headers"), translate("Add and replace fixed headers to the requests, e.g. Browser: Mozilla"))
+headers.cast = "table"
+tunnels.rmempty = true
 
 gateway=s:option(Flag, "gateway", translate("Bind to loopback interface only"))
 gateway.enabled = "0"
