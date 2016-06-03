@@ -64,19 +64,6 @@ start_instance() {
     append_arg "$cfg" username "-u"
     append_arg "$cfg" workstation "-w"
 
-#	append_bool "$cfg" verbose "-V"
-#	append_bool "$cfg" status "-S"
-#	append_arg "$cfg" bind "-a"
-#	append_arg "$cfg" port "-p"
-#	append_arg "$cfg" source "-m"
-#	append_arg "$cfg" max_clients "-c"
-#	append_arg "$cfg" log_file "-l"
-#	append_arg "$cfg" buffer_size "-B"
-#	append_arg "$cfg" buffer_messages "-R"
-#	append_arg "$cfg" buffer_time "-H"
-#	append_arg "$cfg" nice_increment "-n"
-#	append_arg "$cfg" mcsub_renew "-M"
-
 	config_get_bool aux "$cfg" 'respawn' '0'
 	[ "$aux" = 1 ] && procd_set_param respawn
 
