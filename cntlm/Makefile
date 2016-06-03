@@ -40,7 +40,7 @@ define Package/cntlm/description
 endef
 
 define Package/cntlm/conffiles
-/etc/cntlm.conf
+/etc/config/cntlm
 endef
 
 TARGET_CFLAGS += $(FPIC)
@@ -57,7 +57,6 @@ define Package/cntlm/install
 		$(1)/etc/init.d \
 		$(1)/etc/config
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/cntlm $(1)/usr/sbin/
-	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/etc/cntlm.conf $(1)/etc/
 	$(INSTALL_BIN) files/cntlm.init $(1)/etc/init.d/cntlm
 	$(INSTALL_CONF) files/cntlm.config $(1)/etc/config/cntlm
 endef
