@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# needed for "Save and Apply" to restart cntlm
+uci -q batch <<-EOF >/dev/null
+	delete ucitrack.@cntlm[-1]
+	add ucitrack cntlm
+	set ucitrack.@cntlm[-1].init="cntlm"
+	commit ucitrack
+EOF
+
+rm -f /tmp/luci-indexcache
+exit 0
