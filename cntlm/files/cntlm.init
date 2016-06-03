@@ -4,6 +4,15 @@
 START=80
 USE_PROCD=1
 
+append_params() {
+	local cfg="$1"
+	local var="$2"
+	local val
+
+	config_get val "$cfg" "$var"
+	[ -n "$val" ] && procd_append_param command ${val}
+}
+
 append_optip_arg() {
 	local cfg="$1"
 	local var="$2"
@@ -62,6 +71,7 @@ start_instance() {
 	append_arg "$cfg" password "-p"
 	append_arg "$cfg" username "-u"
 	append_arg "$cfg" workstation "-w"
+	append_params "$cfg" proxy
 
 	config_get_bool aux "$cfg" 'respawn' '0'
 	[ "$aux" = 1 ] && procd_set_param respawn

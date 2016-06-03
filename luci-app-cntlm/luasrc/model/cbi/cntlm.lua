@@ -21,6 +21,25 @@ respawn.rmempty = false
 
 -- Upstream and most commonly used options
 
+proxy=s:option(DynamicList, "proxy", translate("Upstream Proxies (ip:port)"))
+proxy.cast = nil
+proxy.default = "10.23.43.129:3128"
+proxy.rmempty = false
+
+domain=s:option(Value, "domain", translate("Upstream Proxy Login Domain"))
+domain.rmempty = false
+
+username=s:option(Value, "username", translate("Upstream Proxy Username"))
+username.rmempty = false
+
+password=s:option(Value, "password", translate("Upstream Proxy Password"))
+password.rmempty = false
+password.password = true
+
+noproxy=s:option(Value, "noproxy", translate("No proxy for"))
+noproxy.default = "localhost, 127.0.0.*, 10.*, 192.168.*"
+noproxy.rmempty = false
+
 bind=s:option(Value, "bind", translate("Bind interface"))
 bind.rmempty = true
 bind.datatype = "ip4addr"
@@ -37,20 +56,6 @@ socks5_port.datatype = "port"
 workstation=s:option(Value, "workstation", translate("Workstation name"))
 workstation.default = "netbios1"
 workstation.rmempty = false
-
-domain=s:option(Value, "domain", translate("Upstream Proxy Login Domain"))
-domain.rmempty = false
-
-username=s:option(Value, "username", translate("Upstream Proxy Username"))
-username.rmempty = false
-
-password=s:option(Value, "password", translate("Upstream Proxy Password"))
-password.rmempty = false
-password.password = true
-
-noproxy=s:option(Value, "noproxy", translate("No proxy for"))
-noproxy.default = "localhost, 127.0.0.*, 10.*, 192.168.*"
-noproxy.rmempty = false
 
 -- Other useful options
 
