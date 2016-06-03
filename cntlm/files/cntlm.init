@@ -58,7 +58,7 @@ append_multi_arg() {
 	local i
 
 	config_get val "$cfg" "$var"
-	[ -z "$val" && -n "$def" ] && procd_append_param command $opt "${def}" && return
+	[ -z "$val" -a -n "$def" ] && procd_append_param command $opt "${def}" && return
 	[ -z "$val" ] && return
 	__SAVED_OPT="$opt"
 	config_list_foreach "$cfg" "$var" handle_multi_arg
