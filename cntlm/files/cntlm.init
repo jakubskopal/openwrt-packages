@@ -10,10 +10,10 @@ append_optip_arg() {
 	local opt="$3"
 	local def="$4"
 	local val
-    local ip
+	local ip
 
-    config_get ip "$cfg" "bind"
-    [ -n "$ip" ] && ip="${ip}:"
+	config_get ip "$cfg" "bind"
+	[ -n "$ip" ] && ip="${ip}:"
 	config_get val "$cfg" "$var"
 	[ -n "$val" -o -n "$def" ] && procd_append_param command $opt "${ip}${val:-$def}"
 }
@@ -51,17 +51,17 @@ start_instance() {
 
 	procd_set_param command /usr/sbin/cntlm
 	procd_append_param command "-f"
-    procd_append_param command "-u nobody"
+	procd_append_param command "-u nobody"
 
-    append_arg "$cfg" auth "-a"
-    append_bool "$cfg" ntlm_to_basic "-B"
-    append_arg "$cfg" domain "-d"
-    append_optip_arg "$cfg" listen_port "-l"
-    append_arg "$cfg" noproxy "-N"
-    append_optip_arg "$cfg" socks5_port "-O"
-    append_arg "$cfg" password "-p"
-    append_arg "$cfg" username "-u"
-    append_arg "$cfg" workstation "-w"
+	append_arg "$cfg" auth "-a"
+	append_bool "$cfg" ntlm_to_basic "-B"
+	append_arg "$cfg" domain "-d"
+	append_optip_arg "$cfg" listen_port "-l"
+	append_arg "$cfg" noproxy "-N"
+	append_optip_arg "$cfg" socks5_port "-O"
+	append_arg "$cfg" password "-p"
+	append_arg "$cfg" username "-u"
+	append_arg "$cfg" workstation "-w"
 
 	config_get_bool aux "$cfg" 'respawn' '0'
 	[ "$aux" = 1 ] && procd_set_param respawn
