@@ -1,7 +1,7 @@
 # Jakub Skopal OpenWRT contributions
 
 Currently contains:
-- [cntlm|http://cntlm.sourceforge.net/]
+- [cntlm](http://cntlm.sourceforge.net/)
 - Luci support for cntlm.
 
 ## Installation
